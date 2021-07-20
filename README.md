@@ -1,2 +1,9 @@
-# User - Management - System (Node.js / Express / MongoDB)
-TBC...
+## User - Management - System (Node.js / Express / MongoDB)
+*This project is created to show the useful knowleadge about connecting a **express-based** back-end sercer to **MongoDB Cloud Atlas**, also using **mongoose** package as a middleware on top of the MongoDB driver*
+
+* ### Created APIs
+  - `/api/users`
+  - `/api/auth`
+  - `/api/update/myself`
+  
+TBC
