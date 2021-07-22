@@ -6,12 +6,15 @@ const auth = require("./routes/auth");
 const error = require("./middlewares/error");
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
 
-// TODO: handle uncaught exception
+// handle uncaught exception
+require("./startup/logging")();
 
 // use middleware and routes
+app.use(cors());
 app.use(express.json());    // to read json format
 app.use("/api/users", users);
 app.use("/api/auth", auth);
@@ -42,10 +45,10 @@ if(!config.get("jwtPrivateKey")){
 }
 
 // TODO: production level security stuffs
-
+require("./startup/prod")(app);
 
 // PORT
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, ()=>{
     console.log(`Listen on port ${port}...`)
 });

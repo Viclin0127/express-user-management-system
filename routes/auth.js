@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router();
 
 // Authentication (Login function)
-// check if username and password are correct, also provide auth-token (Logout usually implement in frontend)
+// check if email and password are correct, also provide auth-token (Logout usually implement in frontend)
 
 // POST
 router.post("/", async (req,res)=>{

@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
     isAdmin: Boolean
 });
 
-// TODO: A method to generate json web token
+// A method to generate json web token
 userSchema.methods.generateAuthToken = function(){
     const token = jwt.sign({_id: this._id, isAdmin: this.isAdmin}, config.get("jwtPrivateKey"));
     return token;
@@ -45,6 +45,7 @@ const validateUser = (user)=>{
     return schema.validate(user);
 }
 
+// validation for no password input
 const validateUserWithoutPassword = (user)=>{
     const schema = Joi.object({
         name: Joi.string().min(3).max(50).required(),
