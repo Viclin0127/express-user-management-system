@@ -11,7 +11,7 @@ const router = express.Router();
 // GET
 // a logged-in user can get all users
 router.get("/", auth, async (req,res) => {
-    const users = await User.find().select("-password");
+    const users = await User.find().select("-password").sort("name");
     res.send(users);
 });
 
