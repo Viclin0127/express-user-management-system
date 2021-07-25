@@ -23,7 +23,11 @@ const userSchema = new mongoose.Schema({
         minlength: 5,
         maxlength: 1024
     },
-    isAdmin: Boolean
+    isAdmin: {
+        type: Boolean,
+        required: true,
+        default: false
+    }
 });
 
 // A method to generate json web token

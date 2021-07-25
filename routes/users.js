@@ -9,6 +9,14 @@ const router = express.Router();
 // API METHODS
 
 // GET
+// get current user 
+router.get("/me", auth, async (req,res)=>{
+    const user = await User.findById(req.user._id).select("-password");
+    if (!user) return res.status(404).send("User not found...");
+    res.send(user);
+});
+
+// GET
 // a logged-in user can get all users
 router.get("/", auth, async (req,res) => {
     const users = await User.find().select("-password").sort("name");
@@ -85,13 +93,22 @@ router.put("/update/myself", auth, async (req,res)=>{
 });
 
 // DELETE
-// only admin user can delete an user
+// only admin user can delete any user (admin version)
 router.delete("/:id", [auth, admin, validateObjectId], async (req,res) =>{
     // Look for the user and remove it
     const user = await User.findByIdAndRemove(req.params.id);
     if(!user) return res.status(404).send("User not found...");
 
     res.send(user);
-})
+});
+
+// DELETE
+// delete myself
+router.delete("/delete/myself", auth, async (req,res)=>{
+    const user = await User.findByIdAndDelete(req.user._id);
+    if (!user) return res.status(404).send("User not found...");
+
+    res.send(user);
+});
 
 module.exports = router;

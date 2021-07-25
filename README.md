@@ -3,7 +3,9 @@
 
 * ### Created APIs
   - `/api/users`
+  - `/api/users/me`
   - `/api/auth`
-  - `/api/update/myself`
+  - `/api/users/update/myself`
+  - `/api/users/delete/myself`
   
 TBC
